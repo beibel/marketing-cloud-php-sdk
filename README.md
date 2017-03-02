@@ -16,7 +16,7 @@ DataProBoston SDK uses Guzzle as HTTP client, its' requirements can be found on
 <http://docs.guzzlephp.org/en/latest/overview.html#requirements>
 
 ## Installation ##
-composer require dataproboston/marketing-cloud-php-sdk
+composer requires dataproboston/marketing-cloud-php-sdk
 
 ## Basic usage
 
@@ -129,7 +129,7 @@ AuthClient is extracted in a separate class to be shared between SoapClient and 
 - options (array). Available options:
     - wsdlInstance (string). Instance of bundled WSDL to use.
       Available instances: 'main', 's4', 's6', 's7', 'test'. Default value - 'main'.
-    - timeout (float). Request timeout in seconds. Default value - 60.
+    - timeout (float). Request timeout in seconds. Default value: 60.
     - sslVerifyPeer (bool|string). Enables / disables SSL certificate verification.
       See <http://docs.guzzlephp.org/en/latest/request-options.html#verify>.
       Default value - false.
@@ -141,7 +141,7 @@ AuthClient is extracted in a separate class to be shared between SoapClient and 
 - objectType (string).
 - object (array). Object argument can be:
     - associative array with object's properties (one object mode).
-    - numeric array of associative arrays with objects' properties (multiple objects mode).
+    - numeric array of associative arrays with objects properties (multiple objects mode).
                  
 - upsert (bool). Only some objects support upsert.
 
@@ -156,11 +156,11 @@ DataProBoston\MarketingCloud\Exception\ClientException interface.
 See "Exceptions handling" for more information.  
 <br/>
 >Note:
->Marketing Cloud API uses two types of object's identifiers:
+>Marketing Cloud API uses two types of objects identifiers:
 >- Legacy identifier (ID, int).
 >- Actual identifier (ObjectID, string).
 >
->Official documentation doesn't provides information about the identifier type that is used for each object.
+>Official documentation doesn't provide information about the identifier type that is used for each object.
 >
 >Create method automatically returns correct identifier.
 >
@@ -268,20 +268,20 @@ ResponseException exception.
 
 #### RetrieveMore method
 
-Retrieve method returns max. 2500 objects at one call. To retrieve all objects, one should check if there are more results
-using hasMoreResults() method and call retrieveMore(), if any. 
+Retrieve method returns max. 2500 objects in one call. To retrieve all objects, first should check if there are more results
+using hasMoreResults() method and call retrieveMore(). 
 
 
 ##### Method arguments:
 
 - requestId (string|null). If not specified, the one from getLastRequestId() will be used.
-                           In this case it's not possible to call other methods while iterating through results.
-                           To be able to call other methods, one should obtain requestId using getLastRequestId()
+                           In this case, it's not possible to call other methods while iterating through results.
+                           To be able to call other methods, firdt should obtain requestId using getLastRequestId()
                            and pass it to retrieveMore().
                            
 ##### Return value:
                            
-Same as in Retrieve method.   
+Same as in the Retrieve method.   
                         
 ##### Usage:
 
@@ -311,9 +311,9 @@ List of available exceptions:
     in Create / Update / Delete / Perform methods in multiple objects mode.
     
 In multiple objects mode some objects can be processed successfully, some have errors.
-If at least one error present, DataProBoston SDK will throw MultipleModeResponseException exception.
+If, at least one error present, DataProBoston SDK will throw MultipleModeResponseException exception.
 This exception has 2 useful methods:
-- getErrors(). Returns an array of errors, where each error is 2-element array
+- getErrors(). Returns an array of errors, where each error is a 2-element array
                of message (string) and code (int). 
                Indexes correspond to indexes in $object argument of SoapClient method call.
 - getCreatedObjectsIdentifiers(). Returns an array of identifiers identically 
